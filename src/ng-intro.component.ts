@@ -62,10 +62,11 @@ namespace ngIntroJs {
 (function (root, factory) {
 	// this is our custom loader
 	if (typeof (<any>window).define === "function" && (<any>window).define.amd) {
-		(<any>window).define(["angular", "intro.js"], factory);
+		(<any>window).define(["angular", "introJs"], factory);
 	} else if (typeof (<any>window).exports === "object") {
-		(<any>window).module.exports = factory((<any>window).require("angular"), (<any>window).require("intro.js"));
+		(<any>window).module.exports = factory((<any>window).require("angular"), (<any>window).require("introJs"));
 	} else {
+		console.log("ROOT: ", root, factory);
 		root.angularIntroJs = factory(root.angular, root.introJs);
 	}
 }(this, function (angular: ng.IAngularStatic, introJs: IntroJs.Factory) {
@@ -77,11 +78,11 @@ namespace ngIntroJs {
 	let moduleName = "angular-intro";
 
 
-	let notifyList: ngIntroJs.NotifyItem = {} // this is an objects that holds the current listeners.
+	let notifyList: ngIntroJs.NotifyItem = {}; // this is an objects that holds the current listeners.
 	///when the intro opens or closes it"ll iterate through this list calling the callback;
 
 	class NgIntroService implements ngIntroJs.INgIntroService {
-		public intro: IntroJs.IntroJs
+		public intro: IntroJs.IntroJs;
 		// static $inject =  []
 
 		constructor() {
@@ -414,4 +415,4 @@ namespace ngIntroJs {
 				}
 			};
 		}]);
-}))
+}));
