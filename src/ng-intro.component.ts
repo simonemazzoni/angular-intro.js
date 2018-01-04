@@ -61,7 +61,7 @@ namespace ngIntroJs {
 }
 (function (root, factory) {
 	// this is our custom loader
-    console.log("ROOT: ", root, factory);
+    console.log("ROOT: ", window, root, factory);
 	if (typeof (<any>window).define === "function" && (<any>window).define.amd) {
 		(<any>window).define(["angular", "introJs"], factory);
 	} else if (typeof (<any>window).exports === "object") {
@@ -71,7 +71,7 @@ namespace ngIntroJs {
 		root.angularIntroJs = factory(root.angular, root.introJs);
 	}
 }(this, function (angular: any, introJs: IntroJs.Factory) {
-
+	console.log("DAAGHEEE: ", this, window, angular, introJs);
 	let introStatus = { // i wanted to use enums, but for now it"ll work
 		open: "open",
 		closed: "closed"
